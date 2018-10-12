@@ -11,7 +11,7 @@ nnoremap <leader>h :History<cr>
 nnoremap <leader>b :Buffers<cr>
 
 " Files recursively from pwd
-nnoremap <C-Space> :Files<cr>
+nnoremap <leader>\ :Files<cr>
 
 " Ex commands
 nnoremap <leader>c :Commands<cr>

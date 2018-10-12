@@ -28,6 +28,13 @@ Plug 'tpope/vim-fugitive' | Plug 'mhinz/vim-signify'
 " colors
 Plug 'tpope/vim-vividchalk'
 
+" status bar
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" show marks
+Plug 'kshenoy/vim-signature'
+
 " Nerdtree + modifications 
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind']}
 
@@ -183,10 +190,6 @@ autocmd vimrc BufNewFile,BufRead *.yml.dist set filetype=yaml.
 
 "" Encoding
 set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8
-set bomb
-set binary
 set ttyfast
 
 syntax on
@@ -221,9 +224,22 @@ autocmd vimrc BufWrite *.php,*.js,*.jsx,*.vue,*.twig,*.html,*.sh,*.yaml,*.yml sf
 " general config 
 "-----------------
 
+function! ToggleGUICruft()
+  if &guioptions=='i'
+    exec('set guioptions=imTrL')
+  else
+    exec('set guioptions=i')
+  endif
+endfunction
+
 " colorscheme
 colo vividchalk
 set background=dark
+if has("gui_running")
+    " by default, hide gui menus
+    set guioptions=I
+    map <F11> <Esc>:call ToggleGUICruft()<cr>
+endif
 
 " Directories for swp files
 set backup
