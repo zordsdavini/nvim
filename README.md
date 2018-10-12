@@ -2,6 +2,9 @@
 all my ViM configuration
 
 ## instalation
-* clone this to home directory 
-* link ~/vimrc/init.vim to ~/.vimrc
-* link ~/vimrc to ~/.vim
+* clone from github
+* inside cloned directory run `install.sh`
+* open vim to finish instalation
+
+## plugins list
+TBD
