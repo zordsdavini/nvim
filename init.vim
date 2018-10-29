@@ -104,6 +104,7 @@ Plug 'tobyS/vmustache' | Plug 'tobyS/pdv', {'for': 'php'}
 " autocompletion
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-tmux'
 Plug 'ncm2/ncm2-path'
