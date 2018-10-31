@@ -8,10 +8,10 @@ augroup END
 nnoremap <leader>h :History<cr>
 
 " Buffers opens
-nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>[ :Buffers<cr>
 
 " Files recursively from pwd
-nnoremap <leader>\ :Files<cr>
+nnoremap <leader>] :Files<cr>
 
 " Ex commands
 nnoremap <leader>c :Commands<cr>

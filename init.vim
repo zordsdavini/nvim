@@ -1,14 +1,22 @@
-" ViM config by zordsdavini, 2018
+" ViM/neovim config by zordsdavini, 2018
 "=================================
 
 " be iMproved
-set nocompatible 	
+if &compatible 
+  set nocompatible 	
+endif
+
+" Declare the general config group for autocommand
+augroup vimrc
+  autocmd!
+augroup END
+
 
 "-----------------
 " install plugin
 "-----------------
 
-let vimplug_exists=expand('~/.vim/autoload/plug.vim')
+let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 if !filereadable(vimplug_exists)
   if !executable("curl")
     echoerr "You have to install curl or first install vim-plug yourself!"
@@ -16,11 +24,11 @@ if !filereadable(vimplug_exists)
   endif
   echo "Installing Vim-Plug..."
   echo ""
-  silent !\curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  silent !\curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall
 endif
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " wrapper for git and display git diff in the left gutter
 Plug 'tpope/vim-fugitive' | Plug 'mhinz/vim-signify' 
@@ -152,14 +160,8 @@ call plug#end()
 " plugin config
 "----------------
 
-" Declare the general config group for autocommand
-augroup vimrc
-  autocmd!
-augroup END
-
-
 " source every plugin configs
-for file in split(glob("~/.vim/plugconf/*.vim"), '\n')
+for file in split(glob("~/.config/nvim/plugconf/*.vim"), '\n')
     exe 'source' file
 endfor
 
@@ -167,7 +169,7 @@ if exists("g:did_load_filetypes")
   filetype off
   filetype plugin indent off
 endif
-set rtp+=~/nvim/godoctor.vim
+set rtp+=~/.config/nvim/godoctor.vim
 filetype on
 filetype plugin indent on
 
@@ -176,7 +178,7 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " project config - is not on my git repository
-source ~/.vim/projects.vim
+source ~/.config/nvim/projects.vim
 
 " Twig
 autocmd vimrc BufNewFile,BufRead *.twig set filetype=html.twig
