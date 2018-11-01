@@ -64,8 +64,7 @@ Plug 'chaoren/vim-wordmotion'
 " Match more stuff with % (html tag, LaTeX...)
 Plug 'andymass/vim-matchup'
 
-" vim project for one specific vimrc / project + startify for startup cow
-Plug 'jpmv27/vim-project'
+" for startup cow
 Plug 'mhinz/vim-startify'
 
 " general quality tools 
