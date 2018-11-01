@@ -1,2 +1,3 @@
-let g:project_use_nerdtree = 1
-set rtp+=~/.vim/plugged/vim-project/
+"let g:project_use_nerdtree = 1
+"set rtp+=~/.config/nvim/plugged/vim-project/
+

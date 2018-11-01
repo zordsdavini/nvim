@@ -16,17 +16,7 @@ augroup END
 " install plugin
 "-----------------
 
-let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
-if !filereadable(vimplug_exists)
-  if !executable("curl")
-    echoerr "You have to install curl or first install vim-plug yourself!"
-    execute "q!"
-  endif
-  echo "Installing Vim-Plug..."
-  echo ""
-  silent !\curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall
-endif
+call general#InitVim() 
 
 call plug#begin('~/.config/nvim/plugged')
 
@@ -75,11 +65,11 @@ Plug 'chaoren/vim-wordmotion'
 Plug 'andymass/vim-matchup'
 
 " vim project for one specific vimrc / project + startify for startup cow
-Plug 'amiorin/vim-project'
+Plug 'jpmv27/vim-project'
 Plug 'mhinz/vim-startify'
 
 " general quality tools 
-"Plug 'neomake/neomake'
+Plug 'neomake/neomake'
 
 " snippets
 Plug 'SirVer/ultisnips'
@@ -150,9 +140,14 @@ Plug 'ap/vim-css-color'
 " jump easielly
 Plug 'easymotion/vim-easymotion'
 
+" multiple cursor
+Plug 'terryma/vim-multiple-cursors'
+
 " Split arrays in PHP / struct in Go
 Plug 'AndrewRadev/splitjoin.vim'
 
+" Autotag: automatically regenerate tags for a file when written.
+Plug 'craigemery/vim-autotag'
 
 call plug#end()
 
@@ -220,20 +215,11 @@ map <leader>e :e! $MYVIMRC<cr>
 nmap <leader>p :let @+ = expand("%")<cr> :let @" = expand("%")<cr>
 
 " delete trailing space when saving files
-autocmd vimrc BufWrite *.php,*.js,*.jsx,*.vue,*.twig,*.html,*.sh,*.yaml,*.yml sf:call general#DeleteTrailingWS()
-
+autocmd vimrc BufWrite *.php,*.js,*.jsx,*.vue,*.twig,*.html,*.sh,*.yaml,*.yml :call general#DeleteTrailingWS()
 
 "-----------------
 " general config 
 "-----------------
-
-function! ToggleGUICruft()
-  if &guioptions=='i'
-    exec('set guioptions=imTrL')
-  else
-    exec('set guioptions=i')
-  endif
-endfunction
 
 " colorscheme
 colo vividchalk
@@ -241,21 +227,25 @@ set background=dark
 if has("gui_running")
     " by default, hide gui menus
     set guioptions=I
-    map <F11> <Esc>:call ToggleGUICruft()<cr>
+    map <F11> <Esc>:call general#ToggleGUICruft()<cr>
 endif
 
 " Directories for swp files
 set backup
-set backupdir=~/.vim/backup
+set backupdir=~/.config/nvim/backup
 set directory=/tmp
 
 " set line number
 set number
-set numberwidth=6
+set numberwidth=5
 
 " number of undo saved in memory
 set undolevels=10000 " How many undos
 set undoreload=10000 " number of lines to save for undo
+" tell it to use an undo file
+set undofile
+" set a directory to store the undo history
+set undodir=~/.config/nvim/undo/
 
 "" Enable hidden buffers
 set hidden
@@ -282,4 +272,5 @@ set autowrite
 " favorite filetypes
 set ffs=unix,dos,mac
 
-
+" clear color for gutter
+highlight clear SignColumn
