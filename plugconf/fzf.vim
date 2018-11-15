@@ -119,5 +119,5 @@ function! s:tags()
   \ 'sink':    function('s:tags_sink')})
 endfunction
 command! Tags call s:tags()
-nnoremap <leader> :Tags<CR>
-nmap <leader> :Tags<CR>
+nnoremap <leader>t :Tags<CR>
+nmap <leader>t :Tags<CR>

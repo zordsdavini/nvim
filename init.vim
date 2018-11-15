@@ -58,9 +58,6 @@ Plug 'machakann/vim-swap'
 " add new text object (can delete between comma with di, for example)
 Plug 'wellle/targets.vim'
 
-" camel case motion
-Plug 'chaoren/vim-wordmotion'
-
 " Match more stuff with % (html tag, LaTeX...)
 Plug 'andymass/vim-matchup'
 
@@ -89,6 +86,7 @@ Plug 'joonty/vdebug'
 Plug 'StanAngeloff/php.vim', {'for': 'php'}
 Plug 'stephpy/vim-php-cs-fixer', {'for': 'php'}
 Plug 'nishigori/vim-php-dictionary', {'for': 'php'}
+Plug 'docteurklein/vim-symfony', {'for': 'php'}
 
 " php refactoring options
 Plug 'adoy/vim-php-refactoring-toolbox', {'for': 'php'}
@@ -148,6 +146,9 @@ Plug 'AndrewRadev/splitjoin.vim'
 " Autotag: automatically regenerate tags for a file when written.
 Plug 'craigemery/vim-autotag'
 
+" Insert or delete brackets, parens, quotes in pairs
+Plug 'jiangmiao/auto-pairs'
+
 call plug#end()
 
 "----------------
@@ -163,6 +164,7 @@ if exists("g:did_load_filetypes")
   filetype off
   filetype plugin indent off
 endif
+
 set rtp+=~/.config/nvim/godoctor.vim
 filetype on
 filetype plugin indent on
@@ -172,7 +174,7 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " project config - is not on my git repository
-source ~/.config/nvim/projects.vim
+"source ~/.config/nvim/projects.vim
 
 " Twig
 autocmd vimrc BufNewFile,BufRead *.twig set filetype=html.twig
@@ -254,6 +256,17 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+
+" use 4 spaces instead of tab (to replace existing tab use :retab)
+" copy indent from current line when starting a new line
+set autoindent
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+
+" always display status line
+set laststatus=2
 
 " enable the mouse
 set mouse=a

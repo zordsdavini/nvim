@@ -1,3 +1,5 @@
+let g:phpactorBranch = "develop"
+
 " Include use statement
 nmap <Leader>u :call phpactor#UseAdd()<CR>
 

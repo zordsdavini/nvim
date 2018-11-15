@@ -13,7 +13,7 @@ function! NERDTreeToggleInCurDir()
   endif
 endfunction
 
-nmap <leader><space> :call NERDTreeToggleInCurDir()<CR>
+nmap <C-e> :call NERDTreeToggleInCurDir()<CR>
 
 " don't display informations (type ? for help and so on)
 let g:NERDTreeMinimalUI = 1
